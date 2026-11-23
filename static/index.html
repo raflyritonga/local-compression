@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local Compress</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f6fed'/%3E%3Cpath d='M10 9l6 6 6-6M10 23l6-6 6 6' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="masthead">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M7 5l5 5 5-5M7 19l5-5 5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div>
+          <h1>Local Compress</h1>
+          <p class="tagline">Shrink PNG, JPG and PDF files without uploading them anywhere.</p>
+        </div>
+      </div>
+      <span class="local-pill">Runs on this computer</span>
+    </header>
+
+    <section class="panel level-panel" aria-labelledby="level-label">
+      <div class="level-head">
+        <label id="level-label" for="level">Compression strength</label>
+        <output id="level-value" for="level">50%</output>
+      </div>
+      <p id="level-hint" class="level-hint"></p>
+      <input id="level" class="slider" type="range" min="1" max="100" value="50">
+      <div class="scale-labels" aria-hidden="true">
+        <span>Better quality</span>
+        <span>Smaller files</span>
+      </div>
+    </section>
+
+    <button id="dropzone" class="dropzone" type="button">
+      <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5l5 5M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <strong>Drop files here or click to browse</strong>
+      <small>PNG · JPG · JPEG · PDF — add as many as you like</small>
+    </button>
+    <input id="picker" type="file" accept=".png,.jpg,.jpeg,.pdf,image/png,image/jpeg,application/pdf" multiple hidden>
+
+    <section id="results" class="results" hidden>
+      <div class="panel summary">
+        <div class="summary-text">
+          <span id="summary-count" class="summary-count"></span>
+          <span id="summary-sizes" class="summary-sizes"></span>
+        </div>
+        <span id="summary-saved" class="summary-saved"></span>
+        <div class="summary-actions">
+          <button id="clear" class="button" type="button">Clear</button>
+          <button id="save-all" class="button primary" type="button">Save all</button>
+        </div>
+      </div>
+      <ul id="file-list" class="file-list"></ul>
+    </section>
+
+    <p class="footnote">Files are processed by a small server on 127.0.0.1 and never stored. Results stay in this tab until you save them.</p>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <template id="file-row">
+    <li class="file">
+      <div class="thumb"></div>
+      <div class="file-info">
+        <span class="file-name"></span>
+        <span class="file-sizes"></span>
+      </div>
+      <span class="badge"></span>
+      <div class="file-actions">
+        <a class="button preview" target="_blank" rel="noopener">Preview</a>
+        <button class="button save" type="button">Save</button>
+        <button class="button icon remove" type="button" aria-label="Remove file">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </li>
+  </template>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

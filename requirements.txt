@@ -1,0 +1,7 @@
+Flask~=3.1
+waitress~=3.0
+Pillow~=13.0
+imagequant~=1.1
+fonttools~=4.68
+# PyMuPDF 2.x pulls in onnxruntime and numpy for AI layout features this app doesn't use.
+PyMuPDF~=1.28
